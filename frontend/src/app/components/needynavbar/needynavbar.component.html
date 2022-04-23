@@ -1,0 +1,42 @@
+<mat-toolbar >
+    <a routerLink=""
+    mat-icon-button class="example-icon  import_contacts ml20 mr20 mb20 mt20" aria-label="Example icon-button with menu icon">
+        <mat-icon>home</mat-icon>
+    </a>
+    <button mat-icon-button class="example-icon  import_contacts ml20 mr20 mb20 mt20" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu_book</mat-icon>
+    </button>
+    <span> OUR HEROES </span>
+    &nbsp; &nbsp;
+    <mat-icon>favorite </mat-icon>
+    <span class="example-spacer"></span>
+    <button  (click)="logout()"
+     mat-icon-button class="example-icon " aria-label="Example icon-button with heart icon">
+              
+      <mat-icon>logout</mat-icon>
+    </button>
+
+    <br>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+      <mat-menu #menu="matMenu">
+          <button (click)="menuitem1()" mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>edit profile</span>
+          
+          </button>
+          <button  (click)="menuitem2()" mat-menu-item>
+            <mat-icon>accessibility_new</mat-icon>
+            <span>Catch up with Heroes</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>not_interested</mat-icon>
+            <span>quit  our hero</span>
+          </button>
+      </mat-menu>
+      
+
+   
+    
+  </mat-toolbar>

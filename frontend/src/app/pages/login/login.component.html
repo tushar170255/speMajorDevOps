@@ -1,0 +1,69 @@
+<app-navbar></app-navbar>
+<div class="bootstrap-wrapper">
+    <div class="container text-center">
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb200">
+                <mat-card>
+                    <div class="container text-center">
+                        <mat-icon set>emoji_people</mat-icon>
+                    </div>
+                    <!-- {{needy | json}} -->
+                    <h1 class="text-center">"" GOD" can't be every where thats why he make "HEROES"</h1>
+                    <h1 class="text-center">LOG IN PORTAL</h1>
+                     <form (ngSubmit)="formSubmit()"> 
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>user name</mat-label>
+                            <input required [(ngModel)]="login.usrName" name="usrName"
+                            matInput placeholder="Enter username">
+                        
+
+
+                        </mat-form-field>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input type="password" required [(ngModel)]="login.password" name="password"
+                            matInput placeholder="Enter password">
+                        
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-radio-group aria-label="Select an option" [(ngModel)]="login.type" name="type">
+                            <mat-radio-button value="0">NEEDY</mat-radio-button>
+                            &nbsp; &nbsp;
+                            <mat-radio-button value="1">HERO</mat-radio-button>
+                            &nbsp; &nbsp;
+                            <mat-radio-button values="2">ADMIN</mat-radio-button>
+                        </mat-radio-group>
+                    
+                         <br> <br>
+                        
+                        <div class="container text-center">
+                            <button type="submit" mat-raised-button color="primary">login</button>
+                            &nbsp;
+                            <button type="reset"  style="margin-left:20px;" mat-raised-button color="accent">clear</button>
+
+                        </div>
+                        <br><br>
+
+
+                   
+
+
+
+
+
+                </form>
+            </mat-card>    
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>

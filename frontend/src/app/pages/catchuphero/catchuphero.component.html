@@ -1,0 +1,30 @@
+<app-needynavbar></app-needynavbar>
+
+
+<div class="bootstrap-wrapper">
+    <div class="container text-center">
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb200">
+              
+                <mat-card *ngFor="let x of needy">
+                   
+                   <mat-card-title >{{x.usrName}} </mat-card-title>
+                   <mat-card-subtitle>{{x.email}}</mat-card-subtitle>
+                   <mat-card-content>{{x.firstName}}&nbsp;&nbsp;&nbsp;{{x.lastName}}&nbsp;&nbsp;&nbsp;{{x.phoneno}}&nbsp;&nbsp;&nbsp;{{x.address}}&nbsp;&nbsp;&nbsp;</mat-card-content>
+
+                   <br><br><br>
+                </mat-card>
+                    
+                        
+                        
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>

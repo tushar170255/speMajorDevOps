@@ -1,0 +1,169 @@
+<app-needynavbar></app-needynavbar>
+
+<div class="bootstrap-wrapper">
+    <div class="container text-center">
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb200">
+                <mat-card>
+                   
+                    {{needy | json}}
+                    
+                    <form (ngSubmit)="formSubmit()">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>user name</mat-label>
+                            <input required [(ngModel)]="needy.usrName" name="usrName"
+                            matInput placeholder="Enter username">
+                            <mat-hint> Must Be Unique</mat-hint>
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>password</mat-label>
+                            <input required  type="password" [(ngModel)]="needy.password" name="password" 
+                            matInput placeholder="Enter password">
+                            <mat-hint>atleast 8 character</mat-hint>
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>first_name</mat-label>
+                            <input  required [(ngModel)]="needy.firstName" name="firstName" 
+                            matInput placeholder="Enter first name">
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        
+                        
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>last_name</mat-label>
+                            <input  [(ngModel)]="needy.lastName" name="lastName"
+                            matInput placeholder="Enter last name">
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>email</mat-label>
+                            <input required  type="email" [(ngModel)]="needy.email" name="email"
+                            matInput placeholder="Enter email address">
+
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>phone</mat-label>
+                            <input  required type="number" [(ngModel)]="needy.phone" name="phone"
+                            matInput placeholder="Enter phone no">
+                            <mat-hint>enter valid phone number</mat-hint>
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>address</mat-label>
+                            <input required  [(ngModel)]="needy.address" name="address" 
+                            matInput placeholder="Enter Address">
+                            <mat-hint>Enter current valid address</mat-hint>
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>pincode</mat-label>
+                            <input required  type="number" [(ngModel)]="needy.pincode" name="pincode"
+                            matInput placeholder="Enter pincode">
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Birthdate</mat-label>
+                            <input required  type="date" [(ngModel)]="needy.birthday" name="birthday"
+                            matInput placeholder="Enter birthday">
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Age</mat-label>
+                            <input  required type="number" [(ngModel)]="needy.age" name="age"
+                            matInput placeholder="Enter Age">
+                        </mat-form-field>
+                        <br><br>
+                        <mat-label>SEX</mat-label>
+                        <br><br>
+                        <mat-radio-group aria-label="Select an option" [(ngModel)]="needy.sex" name="sex">
+                            <mat-radio-button value="Male">MALE</mat-radio-button>
+                            &nbsp;
+                            <mat-radio-button value="Female">FEMALE</mat-radio-button>
+                            &nbsp;
+                            <mat-radio-button values="NotDisclosed">PREFER NOT TO SAY</mat-radio-button>
+                        </mat-radio-group>
+                        <br><br>
+                        <mat-label>Disable</mat-label>
+                        <br><br>
+                        <mat-radio-group aria-label="Select an option" [(ngModel)]="needy.disable" name="disable">
+                            <mat-radio-button value="true">YES</mat-radio-button>
+                            &nbsp;
+                            <mat-radio-button value="false">NO</mat-radio-button>
+                        </mat-radio-group>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>EXPLAIN DISABLITY</mat-label>
+                            <input  [(ngModel)]="needy.disability" name="disability"
+                            matInput placeholder="Enter last name">
+                            <mat-hint>fill nill if no disability</mat-hint>
+                        </mat-form-field>
+                        <br><br>
+                        <!-- <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>upload profile image</mat-label>
+                            <input type="image" matInput placeholder="Enter last name">
+                            <mat-hint>fill nill if no disability</mat-hint>
+                        </mat-form-field>
+                        <br><br> -->
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>image</mat-label>
+                            <br>
+                            <input type="file" accept=".jpg,.jpeg,.png" 
+                            (ngChange)="onFileChanged($event)" [(ngModel)]="needy.image" name="image"
+                            matInput placeholder="Enter image">
+                            
+
+
+
+                        </mat-form-field>
+                        <div class="container text-center">
+                            <button  type="submit" mat-raised-button color="primary">REGISTER</button>
+                            <button type="reset"  style="margin-left:20px;" mat-raised-button color="accent">clear</button>
+
+                        </div>
+
+
+
+
+
+
+
+
+                </form>
+            </mat-card>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>
