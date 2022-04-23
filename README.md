@@ -1,0 +1,2 @@
+# speMajorDevOps
+Human helping service
