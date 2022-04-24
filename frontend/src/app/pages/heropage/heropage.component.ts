@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginComponent } from '../login/login.component';
 import { HeroService } from 'src/app/services/hero.service';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
-import { NeedypageComponent } from '../needypage/needypage.component';
 
 @Component({
   selector: 'app-heropage',
@@ -17,17 +15,25 @@ public static needyFeedbackId:any;
 public static needyFeedback: any;
 public needyTopending :any;
   constructor(private heroService :HeroService,private router:Router) 
-  {
-    this.hero=LoginComponent.heroResponse;
-    this.needyToAccept=this.hero.needyAccept;
-  this.needyTopending=this.hero.needyPending;
-    
-   
-
-   }
+  {}
 
   ngOnInit(): void {
-  
+    let username = window.localStorage.getItem('username');
+    let password = window.localStorage.getItem('password');
+    let type = window.localStorage.getItem('type');
+
+    if(type=='hero'){
+      this.heroService.loginHero({usrName:username,password:password})
+      .subscribe(data=>{
+        this.hero=data;
+        this.needyToAccept=this.hero.needyAccept;
+        this.needyTopending=this.hero.needyPending;
+    
+      })
+    }
+    else{
+      this.router.navigate(['/login'])
+    }
 
   }
 accept(id : any,x:any){
@@ -35,7 +41,6 @@ accept(id : any,x:any){
   this.heroService.acceptNeedy(this.hero.id,id).subscribe(
     (data : any)=>{
       this.hero=data;
-      console.log(LoginComponent.heroResponse);
       Swal.fire( {title: 'Request is Sucessfully ACCepted',
       html: "KEEP Helping ",
       text: 'Redirecting...',
@@ -68,6 +73,7 @@ completed(x : any)
   this.heroService.taskCompleted(x,this.hero.id).subscribe(
    (data: any)=>{
     HeropageComponent.needyFeedbackId=x;
+    window.localStorage.setItem("needyId",x);
 
       Swal.fire( {title: 'GOOD JOB BAWA',
       html: "KEEP GOING",

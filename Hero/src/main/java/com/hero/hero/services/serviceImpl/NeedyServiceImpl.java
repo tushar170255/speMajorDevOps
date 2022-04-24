@@ -2,12 +2,15 @@ package com.hero.hero.services.serviceImpl;
 
 import com.hero.hero.models.Hero;
 import com.hero.hero.models.Needy;
+import com.hero.hero.repo.HeroRepository;
 import com.hero.hero.repo.NeedyRepository;
 import com.hero.hero.services.HeroService;
 import com.hero.hero.services.NeedyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +19,8 @@ public class NeedyServiceImpl implements NeedyService {
     private NeedyRepository needy_repository;
     @Autowired
     private HeroService heroService;
+    @Autowired
+    private HeroRepository heroRepository;
     @Override
     public Needy createNeedy(Needy needy) throws Exception
     {
@@ -147,6 +152,32 @@ public class NeedyServiceImpl implements NeedyService {
         needy.setHeroPending(heroService.prepareResponse(needy.getHeroPending()));
 
         return needy;
+    }
+
+
+
+    @Override
+    public Boolean taskCompleted(Long needyId, Long heroId)
+    {
+        Hero hero=heroRepository.findByid(heroId);
+        Needy needy =needy_repository.findByid(needyId);
+
+        needy.setHeroPending(null);
+        List<Hero> heroes= (needy.getHeroes());
+        heroes.add(hero);
+        ArrayList x = (ArrayList) heroes;
+        needy.setHeroes(x);
+        List<Needy> needies=hero.getNeeds();
+        needies.add(needy);
+        x = (ArrayList)  needies;
+        hero.setNeeds(x);
+
+
+
+        return true;
+
+
+
     }
 
 }

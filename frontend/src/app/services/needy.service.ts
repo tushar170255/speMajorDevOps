@@ -44,6 +44,10 @@ export class NeedyService {
   // }
 
 
+public taskCompleted (needyId : any,heroId : any)
+{
 
+  return this.http.put(`${baseUrl}/needy/taskcompleted/${needyId}`,heroId);
+}
 
 }

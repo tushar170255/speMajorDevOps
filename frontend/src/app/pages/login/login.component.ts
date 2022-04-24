@@ -18,9 +18,8 @@ export class LoginComponent implements OnInit {
     "password":'',
     "type":''
   }
-  public static heroResponse:any;
   public static adminResponse :any;
-  public   static needyResponse: any; 
+  public static needyResponse: any; 
   constructor(private needyService: NeedyService, private heroService: HeroService , private adminService: AdminService, private router:Router) { }
 
   ngOnInit(): void {
@@ -38,7 +37,12 @@ export class LoginComponent implements OnInit {
           text: 'Redirecting...',
           icon: 'success',
           showConfirmButton:true,
-          didClose: ()=>{this.router.navigate(["/needypage"])}
+          didClose: ()=>{
+            window.localStorage.setItem("username",data.usrName);
+            window.localStorage.setItem("password",data.password);
+            window.localStorage.setItem("type",'needy');
+            
+            this.router.navigate(["/needypage"])}
           })
          
         }
@@ -51,15 +55,19 @@ export class LoginComponent implements OnInit {
     else if(this.login.type=="1"){
       this.heroService.loginHero(this.login).subscribe(
         (data : any)=>{
-          LoginComponent.heroResponse=data;
-          console.log(LoginComponent.heroResponse);
           Swal.fire( {title: 'User is Successfully loggedin',
           html: "We are with you",
           text: 'Redirecting...',
           icon: 'success',
           showConfirmButton:true,
-          didClose: ()=>{this.router.navigate(['/heropage'])}
-            });
+          didClose: ()=>{
+            window.localStorage.setItem("username",data.usrName);
+            window.localStorage.setItem("password",data.password);
+            window.localStorage.setItem("type",'hero');
+            
+            
+            this.router.navigate(['/heropage'])
+          }});
         }
         ,(error)=>{
           console.log(error);
@@ -81,8 +89,13 @@ export class LoginComponent implements OnInit {
           text: 'Redirecting...',
           icon: 'success',
           showConfirmButton:true,
-          didClose: ()=>{this.router.navigate(['/adminpage'])}
-            })
+          didClose: ()=>{
+            window.localStorage.setItem("username",data.usrName);
+            window.localStorage.setItem("password",data.password);
+            window.localStorage.setItem("type",'admin');
+            
+            this.router.navigate(['/adminpage'])}
+          })
          
         }
         ,(error)=>{

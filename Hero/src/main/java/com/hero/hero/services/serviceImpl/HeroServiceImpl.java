@@ -129,8 +129,20 @@ return res;
         needy.setHeroPending(null);
         Hero hero=heroRepository.findByid(heroid);
         hero.setTask(hero.getTask()-1);
+
+
+        List<Hero> heroes= (needy.getHeroes());
+        heroes.add(hero);
+        ArrayList x = (ArrayList) heroes;
+        needy.setHeroes(x);
+        List<Needy> needies=hero.getNeeds();
+        needies.add(needy);
+        x = (ArrayList)  needies;
+        hero.setNeeds(x);
+
         needyRepository.save(needy);
         heroRepository.save(hero);
+
 
         return true;
 

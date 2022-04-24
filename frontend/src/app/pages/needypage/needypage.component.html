@@ -56,7 +56,7 @@
                     <mat-card-title ></mat-card-title>
                     <mat-card-subtitle>{{hero.email}}</mat-card-subtitle>
                     <mat-card-content>{{hero.firstName}}&nbsp;&nbsp;&nbsp;{{hero.lastName}}&nbsp;&nbsp;&nbsp;{{hero.phoneno}}&nbsp;&nbsp;&nbsp;{{hero.address}}&nbsp;&nbsp;&nbsp;</mat-card-content>
-                    <button >Task Completed</button>&nbsp;&nbsp;&nbsp;
+                    <button (click)="taskCompleted(hero.id)">Task Completed</button>&nbsp;&nbsp;&nbsp;
                     <!-- <button (clicl)="reject()"> REJECT</button> -->
                     
                     <br><br>

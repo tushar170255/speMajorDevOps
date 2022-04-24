@@ -35,6 +35,10 @@ public  heroes: any;
 
   logout()
   {
+    window.localStorage.removeItem('username');
+    window.localStorage.removeItem('password');
+    window.localStorage.removeItem('type');
+  
     Swal.fire( {title: 'User is Successfully logged out',
           html: "See you soon",
           timer: 5000,

@@ -22,8 +22,8 @@ public feedback={
   }
   public needy: any;
   ngOnInit(): void {
-    this.needyFeedbackId=HeropageComponent.needyFeedbackId;
-    this.needyFeedback=HeropageComponent.needyFeedback;
+    this.needyFeedbackId=Number(localStorage.getItem("needyId"));
+    
    
   }
   submit()

@@ -57,5 +57,14 @@ public class NeedyController {
     }
 
 
+    @PutMapping("/taskcompleted/{needyId}")
+    public Boolean taskCompleted (@PathVariable Long  needyId,@RequestBody Long heroId)
+    {
+        return this.needyService.taskCompleted(needyId,heroId);
+
+    }
+    
+
+
 
 }

@@ -14,8 +14,7 @@ public interface NeedyService {
      Long findComponent(Long id) throws Exception;
      Hero showHero(Long id)throws Exception;
      Needy prepareNeedyResponse(Needy needy) throws Exception;
-
-
+     Boolean taskCompleted (Long needId,Long heroId);
 
 
 }

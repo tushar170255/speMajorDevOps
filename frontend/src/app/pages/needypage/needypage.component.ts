@@ -3,7 +3,7 @@ import { Router} from '@angular/router'
 import { HeroService } from 'src/app/services/hero.service';
 import { LoginComponent } from '../login/login.component';
 import {NeedyService} from  'src/app/services/needy.service';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-needypage',
@@ -18,40 +18,73 @@ export class NeedypageComponent implements OnInit {
 public   base: any;
 public   finding:any;
 public   accepted : any;
+public   feedback : any;
   ngOnInit(): void {
-    this.needy=LoginComponent.needyResponse;
-      this.needyService.findComponent(this.needy.id).subscribe(
-        (data:any)=>{
-          if(data==1){
-            this.base=true;
+    let username = window.localStorage.getItem('username');
+    let password = window.localStorage.getItem('password');
+    let type = window.localStorage.getItem('type');
+
+    if(type=='needy'){
+      this.needyService.loginNeedy({usrName:username,password:password} ).subscribe(
+        (data : any)=>{
+        this.needy=data;
+        this.needyService.findComponent(this.needy.id).subscribe(
+          (data:any)=>{
+            console.log(data);
+            if(data==1){
+              this.base=true;
+              this.accepted=false;
+              this.finding=false;
+              this.feedback=false;
+              
+            } 
+            else if(data==2)
+            {this.base=false;
+              this.accepted=false;
+              this.finding=true;
+              this.feedback=false;
+  
+            }else if (data==3){
+              
+              this.needyService.showHero(this.needy.id).subscribe(
+                (data : any)=>{
+                  this.hero=data;
+                 window.localStorage.setItem('hero',JSON.stringify(this.hero));
+      
+                },
+                (error :any)=>{
+                  alert('error occured!!!');
+                }
+  
+              )
+              this.base=false;
+              this.accepted=true;
+              this.finding=false;
+              this.feedback=false;
+            }
+            else {
+              this.router.navigate(['/needyFeedback'])
+            }
             
-          } 
-          else if(data==2)
-          {
-            this.finding=true;
-
-          }else if (data==3){
-            this.accepted=true;
-            this.needyService.showHero(this.needy.id).subscribe(
-              (data : any)=>{
-                this.hero=data;
-              },
-              (error :any)=>{
-                alert('error occured!!!');
-              }
-
-            )
+  
+          },
+  
+          (error :any)=>{
+            alert('error occured!!!');
           }
           
+  
+        )
 
-        },
+     
+    
+      })
+    }
+    else{
+      this.router.navigate(['/login'])
+    }
 
-        (error :any)=>{
-          alert('error occured!!!');
-        }
-        
 
-      )
 
 
 
@@ -63,7 +96,9 @@ findHero()
     (data : any)=>{
       console.log(data);
       this.base=false;
+      this.accepted=false;
     this.finding=true;
+    this.feedback=false;
 
     //  Swal.fire("sucess","user is registered","success",5000);
    
@@ -81,4 +116,31 @@ findHero()
 
 
 }
+
+taskCompleted(heroid : any )
+{ window.localStorage.setItem("needyId",this.needy.id);
+window.localStorage.setItem("heroId",this.hero.id);
+  this.needyService.taskCompleted(heroid,this.needy.id).subscribe(
+   (data: any)=>{
+Swal.fire( {title: 'GOOD JOB BAWA',
+      html: "KEEP GOING",
+      text: 'Please provide the feed back about the person you helped',
+      icon: 'success',
+      showConfirmButton:true,
+      didClose: ()=>{this.router.navigate(["/herofeedback"])}
+      });
+
+
+  
+    },
+    (error : any)=>{
+
+      window.alert("something unexpected occur...");
+    }
+
+  )
+
+}
+
+
 }
