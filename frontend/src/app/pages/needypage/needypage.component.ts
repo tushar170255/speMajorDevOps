@@ -28,6 +28,14 @@ public   feedback : any;
       this.needyService.loginNeedy({usrName:username,password:password} ).subscribe(
         (data : any)=>{
         this.needy=data;
+        window.localStorage.setItem("needyId",this.needy.id);
+        if(this.needy.heroCompletedId != -1)
+        {
+          window.localStorage.setItem("heroId",this.needy.heroCompletedId)
+          this.router.navigate(['/needyfeedback']);
+        }
+        
+
         this.needyService.findComponent(this.needy.id).subscribe(
           (data:any)=>{
             console.log(data);
@@ -49,6 +57,7 @@ public   feedback : any;
               this.needyService.showHero(this.needy.id).subscribe(
                 (data : any)=>{
                   this.hero=data;
+                  window.localStorage.setItem("heroId",this.hero.id);
                  window.localStorage.setItem('hero',JSON.stringify(this.hero));
       
                 },
@@ -62,19 +71,15 @@ public   feedback : any;
               this.finding=false;
               this.feedback=false;
             }
-            else {
-              this.router.navigate(['/needyFeedback'])
-            }
-            
+           
   
           },
   
           (error :any)=>{
             alert('error occured!!!');
           }
-          
-  
         )
+          
 
      
     
@@ -117,9 +122,15 @@ findHero()
 
 }
 
+taskFinished( heroid : any)
+{
+
+
+
+}
+
 taskCompleted(heroid : any )
-{ window.localStorage.setItem("needyId",this.needy.id);
-window.localStorage.setItem("heroId",this.hero.id);
+{ 
   this.needyService.taskCompleted(heroid,this.needy.id).subscribe(
    (data: any)=>{
 Swal.fire( {title: 'GOOD JOB BAWA',
@@ -127,7 +138,7 @@ Swal.fire( {title: 'GOOD JOB BAWA',
       text: 'Please provide the feed back about the person you helped',
       icon: 'success',
       showConfirmButton:true,
-      didClose: ()=>{this.router.navigate(["/herofeedback"])}
+      didClose: ()=>{this.router.navigate(["/needyfeedback"])}
       });
 
 

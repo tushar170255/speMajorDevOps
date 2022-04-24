@@ -38,6 +38,8 @@ public  heroes: any;
     window.localStorage.removeItem('username');
     window.localStorage.removeItem('password');
     window.localStorage.removeItem('type');
+    window.localStorage.removeItem('needyId');
+    window.localStorage.removeItem('heroId');
   
     Swal.fire( {title: 'User is Successfully logged out',
           html: "See you soon",

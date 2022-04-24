@@ -9,7 +9,6 @@ import com.hero.hero.services.NeedyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -161,20 +160,57 @@ public class NeedyServiceImpl implements NeedyService {
     {
         Hero hero=heroRepository.findByid(heroId);
         Needy needy =needy_repository.findByid(needyId);
-
-        needy.setHeroPending(null);
-        List<Hero> heroes= (needy.getHeroes());
-        heroes.add(hero);
-        ArrayList x = (ArrayList) heroes;
+      if(needy == null || hero == null)
+      {
+          return false;
+      }
+       needy.setHeroPending(null);
+        List<Hero> x= needy.getHeroes();
+        x.add(hero);
         needy.setHeroes(x);
-        List<Needy> needies=hero.getNeeds();
-        needies.add(needy);
-        x = (ArrayList)  needies;
-        hero.setNeeds(x);
+        List<Needy> y= hero.getNeeds();
+        y.add(needy);
+        hero.setNeeds(y);
 
 
+
+
+        needy.setHeroCompletedId(hero.getId());
+
+
+needy_repository.save(needy);
+heroRepository.save(hero);
 
         return true;
+
+
+
+    }
+
+    @Override
+    public Boolean taskFinished(Long needyId, Long heroId, String likes)
+    {
+        Needy needy=needy_repository.findByid(needyId);
+        Hero hero =heroRepository.findByid(heroId);
+       if(hero==null || needy==null)
+       {
+           return false;
+       }
+        needy.setHeroCompletedId((long)  (-1));
+        if(likes =="1")
+        {
+            hero.setLikes(hero.getLikes()+1);
+        }
+        else{
+            hero.setDislikes(hero.getDislikes()+1);
+        }
+
+        needy_repository.save(needy);
+        heroRepository.save(hero);
+
+return true;
+
+
 
 
 

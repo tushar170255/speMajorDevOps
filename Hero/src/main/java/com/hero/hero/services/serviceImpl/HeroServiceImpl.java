@@ -111,14 +111,23 @@ return res;
     }
 
         List<Needy> heroes = hero2.getNeeds();
+        if(heroes!=null && heroes.size()>0)
         heroes.forEach(needy -> needy.setHeroes(null));
+
         hero2.setNeeds(heroes);
-        heroes=hero2.getNeedyAccept();
-        heroes.forEach(needy -> needy.setHeroRequest(null));
-        hero2.setNeedyAccept(heroes);
-        heroes=hero2.getNeedyPending();
-        heroes.forEach(needy -> needy.setHeroPending(null));
-        hero2.setNeedyPending(heroes);
+
+        List<Needy>  heroes1;
+
+        heroes1=hero2.getNeedyAccept();
+        if(heroes1!=null && heroes1.size()>0)
+        heroes1.forEach(needy -> needy.setHeroRequest(null));
+
+        hero2.setNeedyAccept(heroes1);
+        heroes1=hero2.getNeedyPending();
+        if(heroes1.size()>0)
+        heroes1.forEach(needy -> needy.setHeroPending(null));
+
+        hero2.setNeedyPending(heroes1);
 
         return hero2;
     }
@@ -127,18 +136,19 @@ return res;
     {
         Needy needy=needyRepository.findByid(needyid);
         needy.setHeroPending(null);
+        needy.setHeroCompletedId(heroid);
         Hero hero=heroRepository.findByid(heroid);
         hero.setTask(hero.getTask()-1);
 
 
         List<Hero> heroes= (needy.getHeroes());
         heroes.add(hero);
-        ArrayList x = (ArrayList) heroes;
-        needy.setHeroes(x);
+
+        needy.setHeroes(heroes);
         List<Needy> needies=hero.getNeeds();
         needies.add(needy);
-        x = (ArrayList)  needies;
-        hero.setNeeds(x);
+
+        hero.setNeeds(needies);
 
         needyRepository.save(needy);
         heroRepository.save(hero);

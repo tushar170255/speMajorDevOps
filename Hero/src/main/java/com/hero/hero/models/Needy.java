@@ -63,6 +63,16 @@ public class Needy  {
     @JsonIgnoreProperties("needyPending")
     private Hero heroPending;
 
+    private Long  heroCompletedId= Long.valueOf(-1);
+//
+//    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JoinColumn(name = "hero_id_completed", referencedColumnName = "id")
+//    @JsonIgnoreProperties("needyCompleted")
+//    public Hero heroCompleted;
+
+
+
+
 
 
 
@@ -72,7 +82,7 @@ public class Needy  {
         return heroes;
     }
 
-    public void setHeroes(ArrayList<Hero> heroes) {
+    public void setHeroes(List<Hero> heroes) {
         this.heroes = heroes;
     }
     @NotNull

@@ -72,9 +72,12 @@ public class Hero {
     @OneToMany(mappedBy = "heroPending" , cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     @JsonIgnoreProperties("heroPending")
     private List<Needy> needyPending=new ArrayList<Needy> ();
-    public void setNeeds(List<Needy> needs) {
-        this.needs = needs;
-    }
+
+//    @OneToMany(mappedBy = "heroCompleted" , cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+//    @JsonIgnoreProperties("heroCompleted")
+//    private List<Needy> needyCompleted=new ArrayList<Needy> ();
+
+
 
 //  private List <Long> needyToAccept= Collections.synchronizedList(new ArrayList<Long> ());
     public Long getLikes() {

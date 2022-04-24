@@ -44,10 +44,16 @@ export class NeedyService {
   // }
 
 
-public taskCompleted (needyId : any,heroId : any)
+public taskCompleted (heroId : any,needyId : any)
 {
 
   return this.http.put(`${baseUrl}/needy/taskcompleted/${needyId}`,heroId);
 }
+
+public taskFinished( needyId :any , heroId : any,likes: any)
+{
+  return this.http.put(`${baseUrl}/needy/taskfinished/${needyId}`,{"heroId":heroId,"likes":likes});
+}
+
 
 }

@@ -3,6 +3,7 @@ package com.hero.hero.controller;
 import com.hero.hero.models.Hero;
 import com.hero.hero.models.LoginRequestModel;
 import com.hero.hero.models.Needy;
+import com.hero.hero.models.feedbackNeedy;
 import com.hero.hero.services.NeedyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -63,7 +64,13 @@ public class NeedyController {
         return this.needyService.taskCompleted(needyId,heroId);
 
     }
-    
+
+    @PutMapping("/taskfinished/{needyId}")
+     public Boolean taskFinished(@PathVariable Long needyId , @RequestBody feedbackNeedy  feedback)
+    {
+
+        return this.needyService.taskFinished(needyId,feedback.getHeroId(),feedback.getLikes());
+    }
 
 
 

@@ -1,1 +1,52 @@
-<p>needyfeedback works!</p>
+<app-needynavbar></app-needynavbar>
+
+<div class="bootstrap-wrapper">
+    <div class="container text-center">
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb200">
+                
+                <mat-card >
+                   <mat-card-title>FEEDBACK FORM </mat-card-title>
+                                      &nbsp; &nbsp;
+                  
+                   <mat-label>COMMENTS abouts person you helped</mat-label>
+                   &nbsp;&nbsp;
+                   <input class="size" required  type="String" [(ngModel)]="feedback.comment" name="comment"
+                            matInput placeholder="Comments">
+                        <br><br><br>
+                   <mat-label>How was the experience helping </mat-label>
+                        <div>
+                            <mat-radio-group aria-label="Select an option" [(ngModel)]="feedback.like" name="like">
+                                <mat-radio-button value="1">  <mat-icon>sentiment_very_satisfied</mat-icon>
+                                </mat-radio-button>
+                                <br><br>
+                                <mat-radio-button value="1"><mat-icon>sentiment_very_satisfied</mat-icon></mat-radio-button>
+                                <br><br>
+                                <mat-radio-button value="0"><mat-icon>sentiment_dissatisfied</mat-icon></mat-radio-button>
+                                <br><br>
+                                <mat-radio-button value="0"><mat-icon>sentiment_very_dissatisfied</mat-icon></mat-radio-button>
+                                <br><br>
+                            
+                            </mat-radio-group>
+
+                            <button (click)="submit()">Submit <mat-icon>waving_hand</mat-icon></button>
+                        </div>
+                </mat-card>
+                    
+                        
+                        
+           
+ 
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>

@@ -11,6 +11,7 @@ import { AdminpageComponent } from './pages/adminpage/adminpage.component';
 import { NeedyeditprofileComponent } from './pages/needyeditprofile/needyeditprofile.component';
 import { CatchupheroComponent } from './pages/catchuphero/catchuphero.component';
 import { HerofeedbackComponent } from './herofeedback/herofeedback.component';
+import { NeedyfeedbackComponent} from './needyfeedback/needyfeedback.component';
 const routes: Routes = [
   {
     path: '',
@@ -69,6 +70,11 @@ const routes: Routes = [
   {
     path: 'herofeedback',
     component:HerofeedbackComponent,
+    pathMatch:'full'
+  },
+  {
+    path: 'needyfeedback',
+    component:NeedyfeedbackComponent,
     pathMatch:'full'
   },
   

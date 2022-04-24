@@ -15,6 +15,7 @@ public interface NeedyService {
      Hero showHero(Long id)throws Exception;
      Needy prepareNeedyResponse(Needy needy) throws Exception;
      Boolean taskCompleted (Long needId,Long heroId);
+     Boolean taskFinished(Long needyId ,Long heroId, String likes);
 
 
 }

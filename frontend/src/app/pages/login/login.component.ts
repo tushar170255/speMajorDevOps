@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
   constructor(private needyService: NeedyService, private heroService: HeroService , private adminService: AdminService, private router:Router) { }
 
   ngOnInit(): void {
+    let type = window.localStorage.getItem('type');
+    if(type=='needy') this.router.navigate(["/needypage"]);
+    if(type=='hero') this.router.navigate(["/heropage"]);
+    if(type=='admin') this.router.navigate(["/adminpage"]);
   }
   formSubmit()
   {
