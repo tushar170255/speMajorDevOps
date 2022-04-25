@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 @RestController
 @RequestMapping("/hero")
@@ -52,6 +53,12 @@ public class HeroController {
     {
         System.out.println(like);
         this.heroService.feedback(needyid, like);
+
+    }
+    @GetMapping ("/catchupneedy/{usrName}")
+    public HashSet<Needy> catchUpNeedy(@PathVariable String usrName)
+    {
+       return  this.heroService.catchUpNeedy(usrName);
 
     }
 

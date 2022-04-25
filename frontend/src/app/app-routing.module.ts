@@ -12,6 +12,7 @@ import { NeedyeditprofileComponent } from './pages/needyeditprofile/needyeditpro
 import { CatchupheroComponent } from './pages/catchuphero/catchuphero.component';
 import { HerofeedbackComponent } from './herofeedback/herofeedback.component';
 import { NeedyfeedbackComponent} from './needyfeedback/needyfeedback.component';
+import { CatchupneedyComponent } from './pages/catchupneedy/catchupneedy.component';
 const routes: Routes = [
   {
     path: '',
@@ -75,6 +76,11 @@ const routes: Routes = [
   {
     path: 'needyfeedback',
     component:NeedyfeedbackComponent,
+    pathMatch:'full'
+  },
+  {
+    path: 'catchupneedy',
+    component:CatchupneedyComponent,
     pathMatch:'full'
   },
   

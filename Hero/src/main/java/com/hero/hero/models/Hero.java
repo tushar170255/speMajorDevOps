@@ -48,17 +48,17 @@ public class Hero {
     private long task = 0;
     @NotNull @Column(unique=true)
     private  String aadhaar;
-    @NotNull
+    @NotNull @Column(length= 3000)
     private String aadhaarImage;
-
-    @NotNull
+    @NotNull @Column(length= 3000)
     private String otherIdentityImage;
 
     private boolean enabled = true;
+    @NotNull @Column(length= 3000)
     private String image;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY,mappedBy = "heroes")
-    private List<Needy> needs=new ArrayList<>();
+    private List<Needy> needs=new ArrayList<Needy>();
     @NotNull
     private Long likes = Long.valueOf(0);
     private Long dislikes = Long.valueOf(0);

@@ -54,6 +54,9 @@ public taskFinished( needyId :any , heroId : any,likes: any)
 {
   return this.http.put(`${baseUrl}/needy/taskfinished/${needyId}`,{"heroId":heroId,"likes":likes});
 }
-
+public catchUpHeroes (usrName :any)
+{
+  return this.http.get(`${baseUrl}/needy/catchupheroes/${usrName}`);
+}
 
 }

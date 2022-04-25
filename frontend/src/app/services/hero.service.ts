@@ -35,4 +35,9 @@ export class HeroService {
   {
     return this.http.put(`${baseUrl}/hero/feedback/${needyid}`,like);
   }
+  public catchUpNeedy ( usrName : any)
+  {
+    return this.http.get(`${baseUrl}/hero/catchupneedy/${usrName}`);
+  }
+ 
 }

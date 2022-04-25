@@ -4,11 +4,12 @@ import com.hero.hero.models.Hero;
 import com.hero.hero.models.Needy;
 import com.hero.hero.repo.HeroRepository;
 import com.hero.hero.repo.NeedyRepository;
-import com.hero.hero.services.HeroService;
 import com.hero.hero.services.NeedyService;
+import com.hero.hero.services.ResponseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,11 +17,14 @@ import java.util.Optional;
 public class NeedyServiceImpl implements NeedyService {
     @Autowired
     private NeedyRepository needy_repository;
-    @Autowired
-    private HeroService heroService;
+
     @Autowired
     private HeroRepository heroRepository;
+    @Autowired
+    private ResponseService responseService;
+
     @Override
+
     public Needy createNeedy(Needy needy) throws Exception
     {
       Needy local=  this.needy_repository.findByUsrName(needy.getUsrName());
@@ -32,7 +36,7 @@ public class NeedyServiceImpl implements NeedyService {
       else{
         local= this.needy_repository.save(needy);
       }
-        return prepareNeedyResponse(local);
+        return responseService.needyResponse(local);
       }
     @Override
     public Needy getNeedyByUserName(String userName) throws Exception
@@ -40,7 +44,7 @@ public class NeedyServiceImpl implements NeedyService {
         Needy local=this.needy_repository.findByUsrName(userName);
         if(local!=null)
         {
-            return prepareNeedyResponse(local);
+            return  responseService.needyResponse(local);
         }
         else{
             System.out.println("username does not exist");
@@ -73,7 +77,8 @@ public class NeedyServiceImpl implements NeedyService {
         t.setImage(needy.getImage());
         t.setUsrName(needy.getUsrName());
         t.setDisable(needy.isDisable());
-        return  needy_repository.save(t);
+         needy_repository.save(t);
+         return  responseService.needyResponse(t);
 
 
 
@@ -90,7 +95,7 @@ public class NeedyServiceImpl implements NeedyService {
         else{
             if(temp.getPassword().equals(password))
             {
-                return prepareNeedyResponse(temp);
+                return  responseService.needyResponse(temp);
 
             }
             else{
@@ -138,19 +143,7 @@ public class NeedyServiceImpl implements NeedyService {
 
         Needy tmp=needy_repository.findByid(id);
 
-        return heroService.prepareResponse(tmp.getHeroPending());
-    }
-    @Override
-
-    public Needy prepareNeedyResponse(Needy needy)
-    {
-        if(needy==null) return null;
-        needy.getHeroes().forEach(x -> needy.setHeroes(null));
-
-        needy.setHeroRequest(heroService.prepareResponse(needy.getHeroRequest()));
-        needy.setHeroPending(heroService.prepareResponse(needy.getHeroPending()));
-
-        return needy;
+        return responseService.heroResponse(tmp.getHeroPending());
     }
 
 
@@ -165,6 +158,7 @@ public class NeedyServiceImpl implements NeedyService {
           return false;
       }
        needy.setHeroPending(null);
+      needy.setHeroCompletedId(heroId);
         List<Hero> x= needy.getHeroes();
         x.add(hero);
         needy.setHeroes(x);
@@ -204,6 +198,13 @@ heroRepository.save(hero);
         else{
             hero.setDislikes(hero.getDislikes()+1);
         }
+        List<Hero> Heroes=needy.getHeroes();
+        Heroes.add(hero);
+        needy.setHeroes(Heroes);
+        List<Needy>Needs=hero.getNeeds();
+        Needs.add(needy);
+        hero.setNeeds( Needs);
+
 
         needy_repository.save(needy);
         heroRepository.save(hero);
@@ -213,6 +214,21 @@ return true;
 
 
 
+
+    }
+    public HashSet <Hero> catchUpHeroes (String usrName)
+    {
+        Needy needy=needy_repository.findByUsrName(usrName);
+        if(needy!=null)
+        {
+            List<Hero> x=needy.getHeroes();
+            HashSet<Hero> y = new HashSet<>();
+            for (Hero hero:x) y.add(responseService.heroResponse(hero));
+            return  y;
+        }
+        else{
+            return null;
+        }
 
     }
 

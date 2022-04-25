@@ -5,21 +5,32 @@ import com.hero.hero.models.Needy;
 import com.hero.hero.repo.HeroRepository;
 import com.hero.hero.repo.NeedyRepository;
 import com.hero.hero.services.HeroService;
+import com.hero.hero.services.NeedyService;
+import com.hero.hero.services.ResponseService;
+import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
 public class HeroServiceImpl implements HeroService {
-    private final HeroRepository heroRepository;
-    private final NeedyRepository needyRepository;
-    private Object SortedSet;
-
-    public HeroServiceImpl(HeroRepository heroRepository, NeedyRepository needyRepository) {
-        this.heroRepository = heroRepository;
-        this.needyRepository = needyRepository;
-    }
+    @Autowired
+    private  HeroRepository heroRepository;
+    @Autowired
+    private NeedyRepository needyRepository;
+    @Autowired
+    private NeedyService needyService;
+    @Autowired
+    private  ResponseService responseService;
+//    public HeroServiceImpl(HeroRepository heroRepository, NeedyRepository needyRepository,NeedyService needyService) {
+//        this.heroRepository = heroRepository;
+//        this.needyRepository = needyRepository;
+//        this.needyService= needyService;
+//
+//    }
 
     @Override
     public Hero createHero( Hero hero) throws Exception {
@@ -32,7 +43,7 @@ public class HeroServiceImpl implements HeroService {
         else{
             local= this.heroRepository.save(hero);
         }
-        return prepareResponse(local);
+        return responseService.heroResponse(local);
 
     }
 
@@ -50,7 +61,7 @@ public class HeroServiceImpl implements HeroService {
                 System.out.println(temp.getId());
                 List<Needy> heroes = temp.getNeeds();
                 heroes.forEach(needy -> temp.setNeeds(null));
-                return prepareResponse(temp);
+                return responseService.heroResponse(temp);
 
             }
             else{
@@ -100,37 +111,10 @@ return res;
 
 
 
-      return prepareResponse(hero2);
+      return responseService.heroResponse(hero2);
 
     }
-    @Override
-    public Hero prepareResponse(Hero hero2)
-    {if(hero2==null)
-    {
-        return null;
-    }
 
-        List<Needy> heroes = hero2.getNeeds();
-        if(heroes!=null && heroes.size()>0)
-        heroes.forEach(needy -> needy.setHeroes(null));
-
-        hero2.setNeeds(heroes);
-
-        List<Needy>  heroes1;
-
-        heroes1=hero2.getNeedyAccept();
-        if(heroes1!=null && heroes1.size()>0)
-        heroes1.forEach(needy -> needy.setHeroRequest(null));
-
-        hero2.setNeedyAccept(heroes1);
-        heroes1=hero2.getNeedyPending();
-        if(heroes1.size()>0)
-        heroes1.forEach(needy -> needy.setHeroPending(null));
-
-        hero2.setNeedyPending(heroes1);
-
-        return hero2;
-    }
     @Override
     public Boolean taskCompleted (Long needyid, Long heroid)
     {
@@ -172,5 +156,22 @@ return res;
 
         return ;
     }
+   @SneakyThrows
+   @Override
+    public HashSet<Needy> catchUpNeedy(String usrName)
+   {
+       Hero hero = heroRepository.findByUsrName(usrName);
 
+       if(hero!=null)
+       {
+           List<Needy> temp=hero.getNeeds();
+           HashSet<Needy> ans=new HashSet<Needy>();
+           for ( Needy x:temp) {
+
+               ans.add(responseService.needyResponse(x));
+           }
+           return ans;
+       }
+       return null;
+   }
 }

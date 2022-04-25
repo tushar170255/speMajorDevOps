@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { HeroService } from 'src/app/services/hero.service';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-signuphero',
   templateUrl: './signuphero.component.html',
@@ -27,7 +28,7 @@ public hero={
 
 
 }
-  constructor(private heroService : HeroService) { }
+  constructor(private heroService : HeroService,private router :Router) { }
 
   ngOnInit(): void {
   }
@@ -73,7 +74,14 @@ Swal.fire('PHONE no is invalid','Check It Again...','error');
 this.heroService.addHero(this.hero).subscribe(
   (data : any)=>{
     console.log(data);
-   Swal.fire("sucess","user is registered","success");
+    Swal.fire( {title: 'User is Successfully registered',
+    html: "You are ready for helping others !! redirecting to login ....",
+    timer: 4000,
+    text: 'Redirecting...',
+    icon: 'success',
+    showConfirmButton:true,
+    didClose: ( )=>{this.router.navigate(['/login'])},
+      } );
    
   }
   ,(error)=>{
@@ -85,15 +93,31 @@ this.heroService.addHero(this.hero).subscribe(
 }
 onFileChanged( event: any)
 {
-  this.hero.image=event.target.files[0];
+  event.target.files[0];
+  let reader = new FileReader();
+  reader.onloadend = ()=> {
+    this.hero.image=`${reader.result}`;
+  }
+  reader.readAsDataURL(event.target.files[0]);
+
 }
 onFileChangedAI( event: any)
 {
-  this.hero.aadhaarImage=event.target.files[0];
+  event.target.files[0];
+  let reader = new FileReader();
+  reader.onloadend = ()=> {
+    this.hero.aadhaarImage=`${reader.result}`;
+  }
+  reader.readAsDataURL(event.target.files[0]);
 }
 onFileChangedOII( event: any)
 {
-  this.hero.otherIdentityImage=event.target.files[0];
+  event.target.files[0];
+  let reader = new FileReader();
+  reader.onloadend = ()=> {
+    this.hero.otherIdentityImage=`${reader.result}`;
+  }
+  reader.readAsDataURL(event.target.files[0]);
 }
 
 

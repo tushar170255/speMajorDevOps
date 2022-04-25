@@ -124,8 +124,9 @@
                             <mat-label>image</mat-label>
                             <br>
                             <input type="file" accept=".jpg,.jpeg,.png" 
-                            (ngChange)="onFileChanged($event)" [(ngModel)]="hero.image" name="image"
+                            (Change)="onFileChanged($event)" [(ngModel)]="hero.image" name="image"
                             matInput placeholder="Enter image">
+                            <img [src]="hero.image">
                         </mat-form-field>
                         <br><br>
                         <mat-form-field class="full-width" appearance="outline">
@@ -134,6 +135,7 @@
                             <input  
                             [(ngModel)]="hero.aadhaar" name="aadhaar"
                             matInput placeholder="Enter aadhaar number here">
+                           
                         </mat-form-field>
 
                         <br><br>
@@ -141,15 +143,18 @@
                             <mat-label>Aadhaar Image</mat-label>
                             <br>
                             <input type="file" accept=".jpg,.jpeg,.png" 
-                            (ngChange)="onFileChangedAI($event)" [(ngModel)]="hero.aadhaarImage" name="aadhaarImage"
-                            matInput placeholder="Enter Aadhaar  image here fucker indian">
+                            (Change)="onFileChangedAI($event)" [(ngModel)]="hero.aadhaarImage" name="aadhaarImage"
+                            matInput placeholder="Enter Aadhaar  image here  indian">
+                            <img [src] ="hero.aadhaarImage">
+
                         </mat-form-field>
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Additional personal identity image</mat-label>
                             <br>
                             <input type="file" accept=".jpg,.jpeg,.png" 
-                            (ngChange)="onFileChangedOII($event)" [(ngModel)]="hero.otherIdentityImage" name="otherIdentityImage"
+                            (Change)="onFileChangedOII($event)" [(ngModel)]="hero.otherIdentityImage" name="otherIdentityImage"
                             matInput placeholder="Enter image here ">
+                            <img [src] ="hero.otherIdentityImage">
                             <mat-hint> PAN /Driving license/Passport /Voter card/etc </mat-hint>
                         </mat-form-field>
 

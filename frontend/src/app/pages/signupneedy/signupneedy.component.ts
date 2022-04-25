@@ -102,6 +102,12 @@ formSubmit()
 }
 onFileChanged( event: any)
 {
-  this.needy.image=event.target.files[0];
+  event.target.files[0];
+  let reader = new FileReader();
+  reader.onloadend = ()=> {
+    this.needy.image=`${reader.result}`;
+  }
+  reader.readAsDataURL(event.target.files[0]);
+
 }
 }

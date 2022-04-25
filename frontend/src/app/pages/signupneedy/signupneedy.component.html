@@ -135,11 +135,11 @@
                             <mat-label>image</mat-label>
                             <br>
                             <input type="file" accept=".jpg,.jpeg,.png" 
-                            (ngChange)="onFileChanged($event)" [(ngModel)]="needy.image" name="image"
+                            (change)="onFileChanged($event)" [(ngModel)]="needy.image" name="image"
                             matInput placeholder="Enter image">
                             
 
-
+                            <img [src]="needy.image" width="50">
 
                         </mat-form-field>
                         <div class="container text-center">

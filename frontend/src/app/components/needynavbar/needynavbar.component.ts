@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import {LoginComponent } from '../../pages/login/login.component';
 import { HeroneedyService } from 'src/app/services/heroneedy.service';
+import {NeedyService} from '../../services/needy.service';
 @Component({
   selector: 'app-needynavbar',
   templateUrl: './needynavbar.component.html',
@@ -10,27 +11,11 @@ import { HeroneedyService } from 'src/app/services/heroneedy.service';
 })
 export class NeedynavbarComponent implements OnInit {
 
-  constructor( private router :Router,private heroneedyService:HeroneedyService) { }
+  constructor( private router :Router,private needyService:NeedyService) { }
 public  needy: any;
 public  heroes: any;
   ngOnInit(): void {
-    this.needy={
-      usrName:LoginComponent.needyResponse.usrName,
-      password:LoginComponent.needyResponse.password,
-      firstName:LoginComponent.needyResponse.firstName,
-      lastName:LoginComponent.needyResponse.lastName,
-      sex:LoginComponent.needyResponse.sex,
-      email:LoginComponent.needyResponse.email,
-      phone:LoginComponent.needyResponse.phone,
-      pincode:LoginComponent.needyResponse.pinCode,
-      birthday:LoginComponent.needyResponse.birthday,
-      age:LoginComponent.needyResponse.age,
-      disable:LoginComponent.needyResponse.disable,
-      disability:LoginComponent.needyResponse.disability,
-      image:LoginComponent.needyResponse.image,
-      address:LoginComponent.needyResponse.address,
-      id:LoginComponent.needyResponse.id,
-  }
+   
 }
 
   logout()

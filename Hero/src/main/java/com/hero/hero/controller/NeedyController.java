@@ -8,6 +8,8 @@ import com.hero.hero.services.NeedyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
+
 @RestController
 @RequestMapping("/needy")
 @CrossOrigin("http://localhost:4200/")
@@ -70,6 +72,13 @@ public class NeedyController {
     {
 
         return this.needyService.taskFinished(needyId,feedback.getHeroId(),feedback.getLikes());
+    }
+
+    @GetMapping("/catchupheroes/{usrName}")
+    public HashSet<Hero> catchUpHeroes(@PathVariable String usrName)
+    {
+        return this.needyService.catchUpHeroes(usrName);
+
     }
 
 

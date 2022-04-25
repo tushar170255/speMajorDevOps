@@ -32,6 +32,7 @@ import { CatchupheroComponent } from './pages/catchuphero/catchuphero.component'
 import { HeronavbarComponent } from './components/heronavbar/heronavbar.component';
 import { HerofeedbackComponent } from './herofeedback/herofeedback.component';
 import { NeedyfeedbackComponent } from './needyfeedback/needyfeedback.component';
+import { CatchupneedyComponent } from './pages/catchupneedy/catchupneedy.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { NeedyfeedbackComponent } from './needyfeedback/needyfeedback.component'
     HeronavbarComponent,
     HerofeedbackComponent,
     NeedyfeedbackComponent,
+    CatchupneedyComponent,
 
 
 

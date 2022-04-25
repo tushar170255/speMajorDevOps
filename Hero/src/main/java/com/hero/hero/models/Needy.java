@@ -122,6 +122,7 @@ public class Needy  {
     private String disability;
     @ColumnDefault("true")
     private Boolean enabled=true;
+    @Column(length = 10000)
     private String image;
 
 //    @Override

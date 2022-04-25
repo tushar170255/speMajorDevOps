@@ -1,30 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginComponent } from '../login/login.component';
-import {NeedyService} from '../../services/needy.service';
+import {HeroService} from '../../services/hero.service';
 import {Router} from '@angular/router';
 
-
-
 @Component({
-  selector: 'app-catchuphero',
-  templateUrl: './catchuphero.component.html',
-  styleUrls: ['./catchuphero.component.css']
+  selector: 'app-catchupneedy',
+  templateUrl: './catchupneedy.component.html',
+  styleUrls: ['./catchupneedy.component.css']
 })
-export class CatchupheroComponent implements OnInit {
+export class CatchupneedyComponent implements OnInit {
+public hero : any;
+  constructor(private heroService :HeroService ,private router : Router) { }
 
-  constructor(private needyService: NeedyService,private router :Router) { }
-  public needy:any;
   ngOnInit(): void {
     let username = window.localStorage.getItem('username');
     let password = window.localStorage.getItem('password');
     let type = window.localStorage.getItem('type');
 
   
-      this.needyService.catchUpHeroes(username)
+      this.heroService.catchUpNeedy(username)
 
       .subscribe((data :any)=>{
       
-        this.needy=data;
+        this.hero=data;
         
     
       }
