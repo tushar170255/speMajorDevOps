@@ -102,7 +102,6 @@ formSubmit()
 }
 onFileChanged( event: any)
 {
-  event.target.files[0];
   let reader = new FileReader();
   reader.onloadend = ()=> {
     this.needy.image=`${reader.result}`;

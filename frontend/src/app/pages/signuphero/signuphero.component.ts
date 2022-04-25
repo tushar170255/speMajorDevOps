@@ -93,7 +93,6 @@ this.heroService.addHero(this.hero).subscribe(
 }
 onFileChanged( event: any)
 {
-  event.target.files[0];
   let reader = new FileReader();
   reader.onloadend = ()=> {
     this.hero.image=`${reader.result}`;
