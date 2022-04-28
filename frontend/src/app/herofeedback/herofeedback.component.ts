@@ -35,8 +35,8 @@ public feedback={
         
       
       Swal.fire( {title: 'feedback id Succesfully submitted',
-      html: "thank you",
-      text: 'Redirecting...',
+      html: "you can catch up with him later in catch up connections section",
+      text: 'THANK YOU',
       icon: 'success',
       showConfirmButton:true,
       didClose: ()=>{ this.router.navigate(['/heropage'])}

@@ -3,7 +3,7 @@
 <div class="bootstrap-wrapper">
     <div class="container text-center">
         <div class="row" style="margin-top:20px;">
-            <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb200" *ngIf="base">
+            <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb20" *ngIf="base">
                 <mat-card class="waste">
                     
                     
@@ -24,7 +24,7 @@
                     
                 </mat-card>    
             </div>
-            <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb200" *ngIf="finding">
+            <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb20" *ngIf="finding">
                 <mat-card class="waste">
                     
                     
@@ -45,7 +45,7 @@
                     
                 </mat-card>    
             </div>
-            <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb200" *ngIf="accepted">
+            <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb20" *ngIf="accepted">
                 <mat-card class="waste">
                     
                     
@@ -59,13 +59,15 @@
                     <button (click)="taskCompleted(hero.id)">Task Completed</button>&nbsp;&nbsp;&nbsp;
                     <!-- <button (clicl)="reject()"> REJECT</button> -->
                     
-                    <br><br>
-                   
-                    
-                   
-                    
-                    
-                </mat-card>    
+                </mat-card> 
+                <br>
+                
+
+            </div>
+            <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb20" >
+                <app-map class="mapdecorater"></app-map> 
+                
+                
             </div>
             
 

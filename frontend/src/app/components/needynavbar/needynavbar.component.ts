@@ -15,6 +15,17 @@ export class NeedynavbarComponent implements OnInit {
 public  needy: any;
 public  heroes: any;
   ngOnInit(): void {
+    let username = window.localStorage.getItem('username');
+    let password = window.localStorage.getItem('password');
+    let type = window.localStorage.getItem('type');
+    this.needyService.loginNeedy({usrName:username,password:password}).subscribe(
+      (data :any )=>{
+        this.needy=data;
+      }
+      ,(error : any)=>{
+        this.router.navigate(['/login']);
+      }
+    )
    
 }
 

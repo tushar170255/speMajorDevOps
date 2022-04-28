@@ -5,10 +5,11 @@
             <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb200">
                 <h1>New Request</h1>
                 <mat-card *ngFor="let x of  needyToAccept">
-                   
+                   <img class="matcardimage" [src]="x.image">
                    <mat-card-title >{{x.usrName}} </mat-card-title>
                    <mat-card-subtitle>{{x.email}}</mat-card-subtitle>
-                   <mat-card-content>{{x.firstName}}&nbsp;&nbsp;&nbsp;{{x.lastName}}&nbsp;&nbsp;&nbsp;{{x.phoneno}}&nbsp;&nbsp;&nbsp;{{x.address}}&nbsp;&nbsp;&nbsp;</mat-card-content>
+                   <mat-card-content>{{x.firstName}}&nbsp;&nbsp;&nbsp;{{x.lastName}}&nbsp;&nbsp;&nbsp;
+                       {{x.phone}}&nbsp;&nbsp;&nbsp;{{x.address}}&nbsp;&nbsp;&nbsp;</mat-card-content>
                    <button (click)="accept(x.id,x)">ACCEPT</button>&nbsp;&nbsp;&nbsp;
                    <button (click)="reject()"> REJECT</button>
                    <br><br><br>
@@ -22,7 +23,7 @@
             <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb200">
               
                 <mat-card *ngFor="let x of needyTopending">
-                   
+                    <img class="matcardimage" [src]="x.image">
                    <mat-card-title >{{x.usrName}} </mat-card-title>
                    <mat-card-subtitle>{{x.email}}</mat-card-subtitle>
                    <mat-card-content>{{x.firstName}}&nbsp;&nbsp;&nbsp;{{x.lastName}}&nbsp;&nbsp;&nbsp;{{x.phoneno}}&nbsp;&nbsp;&nbsp;{{x.address}}&nbsp;&nbsp;&nbsp;</mat-card-content>

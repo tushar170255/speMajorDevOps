@@ -38,6 +38,12 @@ export class HeroService {
   public catchUpNeedy ( usrName : any)
   {
     return this.http.get(`${baseUrl}/hero/catchupneedy/${usrName}`);
+
+  }
+
+  public editHeroProfile (hero : any)
+  {
+    return this.http.put(`${baseUrl}/hero/heroeditprofile`,hero);
   }
  
 }

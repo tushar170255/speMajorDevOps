@@ -39,7 +39,7 @@ export class NeedyfeedbackComponent implements OnInit {
      {
       Swal.fire( {title: 'feedback is Succesfully submitted',
       html: "thank you",
-      text: 'Redirecting...',
+      text: 'you can cath up with him later...',
       icon: 'success',
       showConfirmButton:true,
       didClose: ()=>{ this.router.navigate(['/needypage'])}

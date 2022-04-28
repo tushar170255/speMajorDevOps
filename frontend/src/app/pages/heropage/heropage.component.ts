@@ -27,6 +27,9 @@ public needyTopending :any;
       .subscribe(data=>{
         this.hero=data;
         this.needyToAccept=this.hero.needyAccept;
+        this.needyToAccept.forEach((element: { image: any; }) => {
+          console.log(element.image);         
+        });
         this.needyTopending=this.hero.needyPending;
     
       })
@@ -41,8 +44,8 @@ accept(id : any,x:any){
   this.heroService.acceptNeedy(this.hero.id,id).subscribe(
     (data : any)=>{
       this.hero=data;
-      Swal.fire( {title: 'Request is Sucessfully ACCepted',
-      html: "KEEP Helping ",
+      Swal.fire( {title: 'Request is Sucessfully Accepted',
+      html: "Keep Helping ",
       text: 'Redirecting...',
       icon: 'success',
       showConfirmButton:true,
@@ -86,7 +89,7 @@ completed(x : any)
      
    },
    (error : any)=> {
-     alert('sone thig went wrong ');
+     alert('some thig went wrong ');
    }
   )
 

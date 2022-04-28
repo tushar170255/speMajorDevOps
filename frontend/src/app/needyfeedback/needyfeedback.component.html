@@ -9,12 +9,15 @@
                    <mat-card-title>FEEDBACK FORM </mat-card-title>
                                       &nbsp; &nbsp;
                   
-                   <mat-label>COMMENTS abouts person you helped</mat-label>
+                   <mat-label>COMMENTS abouts person that helped you</mat-label>
                    &nbsp;&nbsp;
-                   <input class="size" required  type="String" [(ngModel)]="feedback.comment" name="comment"
-                            matInput placeholder="Comments">
-                        <br><br><br>
-                   <mat-label>How was the experience helping </mat-label>
+                   <br>
+                   <textarea class="size" required  type="String" [(ngModel)]="feedback.comment" name="comment"
+                            matInput placeholder="Comments"></textarea>
+                    <br><br>    
+                   <mat-label>How was the experience</mat-label>
+                   <br><br>
+                  
                         <div>
                             <mat-radio-group aria-label="Select an option" [(ngModel)]="feedback.like" name="like">
                                 <mat-radio-button value="1">  <mat-icon>sentiment_very_satisfied</mat-icon>

@@ -17,18 +17,19 @@
     </button>
 
     <br>
+    {{hero.usrName}}
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <mat-icon>account_circle</mat-icon>
+        <mat-icon>account_circle</mat-icon> 
     </button>
       <mat-menu #menu="matMenu">
-          <button  mat-menu-item>
+          <button (click)="editProfile()" mat-menu-item>
             <mat-icon>settings</mat-icon>
             <span>edit profile</span>
           
           </button>
-          <button   mat-menu-item>
+          <button  (click)="catchUpNeedy()" mat-menu-item>
             <mat-icon>accessibility_new</mat-icon>
-            <span>Catch up with Heroes</span>
+            <span>Catch up with connections</span>
           </button>
           <button mat-menu-item>
             <mat-icon>not_interested</mat-icon>

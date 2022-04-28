@@ -48,13 +48,13 @@ public class Hero {
     private long task = 0;
     @NotNull @Column(unique=true)
     private  String aadhaar;
-    @NotNull @Column(length= 3000)
+    @NotNull @Column(length= 4000)
     private String aadhaarImage;
-    @NotNull @Column(length= 3000)
+    @NotNull @Column(length= 4000)
     private String otherIdentityImage;
 
     private boolean enabled = true;
-    @NotNull @Column(length= 3000)
+    @NotNull @Column(length= 4000)
     private String image;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY,mappedBy = "heroes")

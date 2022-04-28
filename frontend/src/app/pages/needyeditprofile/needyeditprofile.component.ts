@@ -19,23 +19,19 @@ export class NeedyeditprofileComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.needy={
-      usrName:LoginComponent.needyResponse.usrName,
-      password:LoginComponent.needyResponse.password,
-      firstName:LoginComponent.needyResponse.firstName,
-      lastName:LoginComponent.needyResponse.lastName,
-      sex:LoginComponent.needyResponse.sex,
-      email:LoginComponent.needyResponse.email,
-      phone:LoginComponent.needyResponse.phone,
-      pincode:LoginComponent.needyResponse.pinCode,
-      birthday:LoginComponent.needyResponse.birthday,
-      age:LoginComponent.needyResponse.age,
-      disable:LoginComponent.needyResponse.disable,
-      disability:LoginComponent.needyResponse.disability,
-      image:LoginComponent.needyResponse.image,
-      address:LoginComponent.needyResponse.address,
-      id:LoginComponent.needyResponse.id,
-    }
+    let username= window.localStorage.getItem('username');
+    let password =  window.localStorage.getItem('password');
+    
+    this.needyService.loginNeedy({usrName:username,password:password}).subscribe(
+      (data: any)=>{
+        this.needy=data;
+      }
+      ,(error : any)=>{
+        this.router.navigate(['/login']);
+      }
+
+    )
+
     // console.log(LoginComponent.needyResponse );
   }
   onFileChanged( event: any)

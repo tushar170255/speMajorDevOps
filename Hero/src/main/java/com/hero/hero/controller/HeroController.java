@@ -7,6 +7,7 @@ import com.hero.hero.services.HeroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -60,6 +61,10 @@ public class HeroController {
     {
        return  this.heroService.catchUpNeedy(usrName);
 
+    }
+    @PutMapping("/heroeditprofile")
+    public  Boolean editHeroProfile (@RequestBody Hero hero) throws IOException {
+        return this.heroService.editHeroProfile(hero);
     }
 
 

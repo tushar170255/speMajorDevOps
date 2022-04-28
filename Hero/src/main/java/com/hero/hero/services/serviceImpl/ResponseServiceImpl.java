@@ -12,7 +12,7 @@ public class ResponseServiceImpl implements ResponseService {
     public Needy needyResponse(Needy needy)
     {
         if(needy==null) return null;
-        needy.getHeroes().forEach(x -> needy.setHeroes(null));
+        if(needy.getHeroes()!=null) needy.getHeroes().forEach(x -> needy.setHeroes(null));
 
         needy.setHeroRequest(heroResponse(needy.getHeroRequest()));
         needy.setHeroPending(heroResponse(needy.getHeroPending()));

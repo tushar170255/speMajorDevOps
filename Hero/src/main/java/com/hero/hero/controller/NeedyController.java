@@ -8,6 +8,7 @@ import com.hero.hero.services.NeedyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.HashSet;
 
 @RestController
@@ -75,8 +76,7 @@ public class NeedyController {
     }
 
     @GetMapping("/catchupheroes/{usrName}")
-    public HashSet<Hero> catchUpHeroes(@PathVariable String usrName)
-    {
+    public HashSet<Hero> catchUpHeroes(@PathVariable String usrName) throws IOException {
         return this.needyService.catchUpHeroes(usrName);
 
     }

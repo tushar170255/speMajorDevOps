@@ -1,0 +1,191 @@
+<app-heronavbar></app-heronavbar>
+
+<div class="bootstrap-wrapper">
+    <div class="container text-center">
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-6 offset-md-3 ml200 mr200 mt20 mb200" >
+                <mat-card>
+                    <div class="container text-center">
+                
+                    </div>
+                    <!-- {{hero| json}} -->
+                    <h1 class="text-center">Personal Information Updation</h1>
+                    <form (ngSubmit)="formSubmit()">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>user name</mat-label>
+                            <input required [(ngModel)]="hero.usrName" name="usrName"
+                            matInput placeholder="Enter username">
+                            <mat-hint> Must Be Unique</mat-hint>
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>password</mat-label>
+                            <input required  type="password" [(ngModel)]="hero.password" name="password" 
+                            matInput placeholder="Enter password">
+                            <mat-hint>atleast 8 character</mat-hint>
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>first_name</mat-label>
+                            <input  required [(ngModel)]="hero.firstName" name="firstName" 
+                            matInput placeholder="Enter first name">
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        
+                        
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>last_name</mat-label>
+                            <input  [(ngModel)]="hero.lastName" name="lastName"
+                            matInput placeholder="Enter last name">
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>email</mat-label>
+                            <input required  type="email" [(ngModel)]="hero.email" name="email"
+                            matInput placeholder="Enter email address">
+
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>phone</mat-label>
+                            <input  required type="number" [(ngModel)]="hero.phone" name="phone"
+                            matInput placeholder="Enter phone no">
+                            <mat-hint>enter valid phone number</mat-hint>
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>address</mat-label>
+                            <input required  [(ngModel)]="hero.address" name="address" 
+                            matInput placeholder="Enter Address">
+                            <mat-hint>Enter current valid address</mat-hint>
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>pincode</mat-label>
+                            <input required  type="number" [(ngModel)]="hero.pincode" name="pincode"
+                            matInput placeholder="Enter pincode">
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Service Area pincode</mat-label>
+                            <input required  type="number" [(ngModel)]="hero.servicePincode" name="servicePincode"
+                            matInput placeholder="Enter  Service Area  Pincode">
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Birthdate</mat-label>
+                            <mat-label>{{hero.birthday}}</mat-label>
+                            <input required  type="date" [(ngModel)]="hero.birthday" name="birthday"
+                            matInput placeholder="Enter birthday">
+
+
+
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Age</mat-label>
+                            <input  required type="number" [(ngModel)]="hero.age" name="age"
+                            matInput placeholder="Enter Age">
+                        </mat-form-field>
+                        <br><br>
+                        <mat-label>SEX</mat-label>
+                        <br><br>
+                        <mat-radio-group aria-label="Select an option" [(ngModel)]="hero.sex" name="sex">
+                            <mat-radio-button value="Male">MALE</mat-radio-button>
+                            &nbsp;
+                            <mat-radio-button value="Female">FEMALE</mat-radio-button>
+                            &nbsp;
+                            <mat-radio-button values="NotDisclosed">PREFER NOT TO SAY</mat-radio-button>
+                        </mat-radio-group>
+                        <br><br>
+                    
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>image</mat-label>
+                            <br>
+                            <input type="file" accept=".jpg,.jpeg,.png" 
+                            (change)="onFileChanged($event)" [(ngModel)]="hero.image" name="image"
+                            matInput placeholder="Enter image">
+                            <img  class="signupimage"[src]="hero.image ">
+                        </mat-form-field>
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Aadhaar Number</mat-label>
+                            
+                            <input  
+                            [(ngModel)]="hero.aadhaar" name="aadhaar"
+                            matInput placeholder="Enter aadhaar number here">
+                           
+                        </mat-form-field>
+
+                        <br><br>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Aadhaar Image</mat-label>
+                            <br>
+                            <input type="file" accept=".jpg,.jpeg,.png" 
+                            (change)="onFileChangedAI($event)" [(ngModel)]="hero.aadhaarImage" name="aadhaarImage"
+                            matInput placeholder="Enter Aadhaar  image here  indian">
+                            <img  class="signupimage" [src] ="hero.aadhaarImage">
+
+                        </mat-form-field>
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Additional personal identity image</mat-label>
+                            <br>
+                            <input type="file" accept=".jpg,.jpeg,.png" 
+                            (change)="onFileChangedOII($event)" [(ngModel)]="hero.otherIdentityImage" name="otherIdentityImage"
+                            matInput placeholder="Enter image here ">
+                            <img class="signupimage"  [src] ="hero.otherIdentityImage">
+                            <mat-hint> PAN /Driving license/Passport /Voter card/etc </mat-hint>
+                        </mat-form-field>
+
+
+                        <div class="container text-center">
+                            <button type="submit" mat-raised-button color="primary">update </button>
+                            <button type="reset"  style="margin-left:20px;" mat-raised-button color="accent">clear</button>
+
+                        </div>
+
+
+
+
+
+
+
+
+                </form>
+            </mat-card>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>
+
+

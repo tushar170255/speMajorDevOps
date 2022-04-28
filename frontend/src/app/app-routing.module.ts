@@ -13,6 +13,7 @@ import { CatchupheroComponent } from './pages/catchuphero/catchuphero.component'
 import { HerofeedbackComponent } from './herofeedback/herofeedback.component';
 import { NeedyfeedbackComponent} from './needyfeedback/needyfeedback.component';
 import { CatchupneedyComponent } from './pages/catchupneedy/catchupneedy.component';
+import { HeroeditprofileComponent } from './heroeditprofile/heroeditprofile.component';
 const routes: Routes = [
   {
     path: '',
@@ -83,6 +84,12 @@ const routes: Routes = [
     component:CatchupneedyComponent,
     pathMatch:'full'
   },
+  {
+    path: 'heroeditprofile',
+    component:HeroeditprofileComponent,
+    pathMatch:'full'
+  },
+  
   
 ];
 

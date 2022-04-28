@@ -7,7 +7,7 @@
                 <mat-card>
                    
                     <!-- {{needy | json}} -->
-                    
+                    <h1>Update Personal Information</h1>
                     <form (ngSubmit)="formSubmit()">
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>user name</mat-label>
@@ -136,13 +136,14 @@
                             <input type="file" accept=".jpg,.jpeg,.png" 
                             (ngChange)="onFileChanged($event)" [(ngModel)]="needy.image" name="image"
                             matInput placeholder="Enter image">
+                            <img class="signupimage" [src]="needy.image">
                             
 
 
 
                         </mat-form-field>
                         <div class="container text-center">
-                            <button  type="submit" mat-raised-button color="primary">REGISTER</button>
+                            <button  type="submit" mat-raised-button color="primary">update</button>
                             <button type="reset"  style="margin-left:20px;" mat-raised-button color="accent">clear</button>
 
                         </div>

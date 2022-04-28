@@ -4,6 +4,7 @@ import com.hero.hero.models.Hero;
 import com.hero.hero.models.Needy;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.HashSet;
 
 @Service
@@ -18,7 +19,7 @@ public interface NeedyService {
 //     Needy prepareNeedyResponse(Needy needy) throws Exception;
      Boolean taskCompleted (Long needId,Long heroId);
      Boolean taskFinished(Long needyId ,Long heroId, String likes);
-     HashSet<Hero> catchUpHeroes (String usrName);
+     HashSet<Hero> catchUpHeroes (String usrName) throws IOException;
 
 
 }

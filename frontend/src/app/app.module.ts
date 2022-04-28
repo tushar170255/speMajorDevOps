@@ -33,6 +33,8 @@ import { HeronavbarComponent } from './components/heronavbar/heronavbar.componen
 import { HerofeedbackComponent } from './herofeedback/herofeedback.component';
 import { NeedyfeedbackComponent } from './needyfeedback/needyfeedback.component';
 import { CatchupneedyComponent } from './pages/catchupneedy/catchupneedy.component';
+import { HeroeditprofileComponent } from './heroeditprofile/heroeditprofile.component';
+import { MapComponent } from './components/map/map.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +55,8 @@ import { CatchupneedyComponent } from './pages/catchupneedy/catchupneedy.compone
     HerofeedbackComponent,
     NeedyfeedbackComponent,
     CatchupneedyComponent,
+    HeroeditprofileComponent,
+    MapComponent,
 
 
 

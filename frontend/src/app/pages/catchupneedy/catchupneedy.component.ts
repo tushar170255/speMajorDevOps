@@ -9,15 +9,16 @@ import {Router} from '@angular/router';
 })
 export class CatchupneedyComponent implements OnInit {
 public hero : any;
+public username :any;
   constructor(private heroService :HeroService ,private router : Router) { }
 
   ngOnInit(): void {
-    let username = window.localStorage.getItem('username');
+    this.username = window.localStorage.getItem('username');
     let password = window.localStorage.getItem('password');
     let type = window.localStorage.getItem('type');
 
   
-      this.heroService.catchUpNeedy(username)
+      this.heroService.catchUpNeedy(this.username)
 
       .subscribe((data :any)=>{
       

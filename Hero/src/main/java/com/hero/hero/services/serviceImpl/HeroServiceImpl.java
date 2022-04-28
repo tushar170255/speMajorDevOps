@@ -11,6 +11,12 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -31,7 +37,35 @@ public class HeroServiceImpl implements HeroService {
 //        this.needyService= needyService;
 //
 //    }
+public String Image(String fileLocation) throws IOException {
+    String file_content = Files.readString(Path.of(fileLocation));
+    return file_content;
+}
 
+
+    public String createFile(String usrName, String image) throws IOException {
+
+        String fileLocation = new File("src//main//resources//static//hero//"+usrName).getAbsolutePath();
+        Path textFilePath = Paths.get(fileLocation);
+        Files.createFile(textFilePath);
+        Path fileName = Path.of(
+                fileLocation);
+
+        // Writing into the file
+        Files.writeString(fileName, image);
+        return fileLocation ;
+    }
+    public String editFile(String usrName ,String image) throws IOException {
+
+        String fileLocation = new File("src//main//resources//static//hero"+usrName).getAbsolutePath();
+        Path textFilePath = Paths.get(fileLocation);
+        PrintWriter writer = new PrintWriter(fileLocation);
+        writer.print("");
+        writer.close();
+        Files.writeString(Path.of(fileLocation), image);
+
+        return fileLocation;
+    }
     @Override
     public Hero createHero( Hero hero) throws Exception {
         Hero local=  this.heroRepository.findByUsrName(hero.getUsrName());
@@ -41,9 +75,23 @@ public class HeroServiceImpl implements HeroService {
             throw new Exception("user already present !!!");
         }
         else{
-            local= this.heroRepository.save(hero);
+            String fileLocation =createFile(hero.getUsrName(),hero.getImage());
+            hero.setImage(fileLocation);
+            fileLocation =createFile(hero.getUsrName()+"aadhar" ,hero.getAadhaarImage());
+            hero.setAadhaarImage(fileLocation);
+
+            fileLocation =createFile(hero.getUsrName()+"other" ,hero.getOtherIdentityImage());
+            hero.setOtherIdentityImage(fileLocation);
+
+
+
+             this.heroRepository.save(hero);
         }
-        return responseService.heroResponse(local);
+        hero=heroRepository.findByUsrName(hero.getUsrName());
+        hero.setImage(Image(hero.getImage()));
+        hero.setAadhaarImage(Image(hero.getAadhaarImage()));
+        hero.setOtherIdentityImage(Image(hero.getOtherIdentityImage()));
+        return responseService.heroResponse(hero);
 
     }
 
@@ -59,8 +107,25 @@ public class HeroServiceImpl implements HeroService {
             if((temp.getPassword().equals(password)))
             {
                 System.out.println(temp.getId());
+                temp.setImage(Image(temp.getImage()));
+                temp.setAadhaarImage(Image(temp.getAadhaarImage()));
+                temp.setOtherIdentityImage(Image(temp.getOtherIdentityImage()));
+
                 List<Needy> heroes = temp.getNeeds();
-                heroes.forEach(needy -> temp.setNeeds(null));
+                for (Needy needy : heroes) {
+                    needy.setImage(Image(needy.getImage()));
+                }
+                temp.setNeeds(heroes);
+                 heroes = temp.getNeedyAccept();
+                for (Needy needy : heroes) {
+                    needy.setImage(Image(needy.getImage()));
+                }
+                temp.setNeedyAccept(heroes);
+                heroes=temp.getNeedyPending();
+                for (Needy needy : heroes) {
+                    needy.setImage(Image(needy.getImage()));
+                }
+                temp.setNeedyPending(heroes);
                 return responseService.heroResponse(temp);
 
             }
@@ -89,6 +154,9 @@ public class HeroServiceImpl implements HeroService {
 //         }
 //  System.out.println(res);
        needy.setHeroRequest(temp);
+       String fileLocation =editFile(needy.getUsrName(),needy.getImage());
+       needy.setImage(fileLocation);
+       
         needyRepository.save(needy);
 
 
@@ -99,8 +167,7 @@ return res;
     }
 
     @Override
-    public Hero acceptNeedy(Long needyid,Long heroid)
-    {
+    public Hero acceptNeedy(Long needyid,Long heroid) throws IOException {
       Needy tmp=needyRepository.findByid(needyid);
       Hero hero2 = heroRepository.findByid(heroid);
       hero2.setTask(hero2.getTask()+1);
@@ -109,7 +176,9 @@ return res;
       needyRepository.save(tmp);
 
 
-
+        hero2.setImage(Image(hero2.getImage()));
+        hero2.setAadhaarImage(Image(hero2.getAadhaarImage()));
+        hero2.setOtherIdentityImage(Image(hero2.getOtherIdentityImage()));
 
       return responseService.heroResponse(hero2);
 
@@ -167,11 +236,22 @@ return res;
            List<Needy> temp=hero.getNeeds();
            HashSet<Needy> ans=new HashSet<Needy>();
            for ( Needy x:temp) {
-
+               x.setImage(Image(x.getImage()));
                ans.add(responseService.needyResponse(x));
            }
+           System.out.println(ans);
            return ans;
        }
+       else
        return null;
+   }
+   @Override
+    public Boolean editHeroProfile (Hero hero) throws IOException {
+       String fileLocation=editFile(hero.getUsrName(),hero.getImage());
+       fileLocation =editFile(hero.getUsrName()+"aadhar",hero.getImage());
+       fileLocation =editFile(hero.getUsrName()+"other",hero.getImage());
+       heroRepository.save(hero);
+
+       return true;
    }
 }
