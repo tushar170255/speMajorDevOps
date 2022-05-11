@@ -3,7 +3,8 @@ pipeline{
     
     environment {
         registry = "tusharsharma/spemajordevops"
-        registryCredential = 'DOCKERHUB'
+        
+          docker_hub_credentials = credential('DOCKERHUB')
        
     }
     
@@ -31,17 +32,20 @@ pipeline{
             }
         }
         stage('Docker Push') {
-            steps {
-                script{
-                    withCredentials([string(credentialsId:'DOCKERHUB',variable:'dockerhub')]){
-                        sh 'docker login -u tusharsharma3 -p ${dockerhub}'
-                        sh 'docker push tusharsharma3/hero:latest'
-                         sh 'docker push tusharsharma3/angular-app:latest'
-                        
-                    }
-                    
-                }
+            
+             steps {
+                sh 'echo $docker_hub_credentials_PSW | docker login -u $docker_hub_credentials_USR --password-stdin'
+                dir("front-end")
+        		{
+        			sh 'docker push tusharsharma3/angular-app:latest'	
+        		}
+        		dir("Hero")
+        		{
+        			sh 'docker push tusharsharma3/hero:latest'	
+        		}
+                sh 'docker logout'
             }
+        }
         }
         stage('Clean Docker Images') {
             steps {
