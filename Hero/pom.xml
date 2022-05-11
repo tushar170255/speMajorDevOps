@@ -15,6 +15,7 @@
 	<description>backend code for hero project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -94,11 +95,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-<<<<<<< HEAD
+
 				<version>${project.parent.version}</version>
-=======
-				<verison>4.0.0</verison>
->>>>>>> 1b385312d19d2e6882139024f07995d9b32557bf
+
+
 			</plugin>
 		</plugins>
 		
