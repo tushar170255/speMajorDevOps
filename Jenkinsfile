@@ -35,7 +35,7 @@ pipeline{
             
              steps {
                 sh 'echo $docker_hub_credentials_PSW | docker login -u $docker_hub_credentials_USR --password-stdin'
-                dir("front-end")
+                dir("frontend")
         		{
         			sh 'docker push tusharsharma3/angular-app:latest'	
         		}
