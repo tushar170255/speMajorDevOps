@@ -17,7 +17,7 @@ pipeline{
         stage('Install dependency') {
             steps {
                
-                sh '/Hero mvn clean install'
+                sh '/Hero/ mvn clean install'
                 
             }
         }
