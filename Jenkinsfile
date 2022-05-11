@@ -55,7 +55,9 @@ pipeline{
         }
         stage('Ansible Deploy') {
              steps {
-                  ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory', playbook: 'deploy.yml'
+//                   ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory', playbook: 'deploy.yml'
+             
+             sh 'ansible-playbook playbook.yml -i inventory --extra-vars "ansible_sudo_pass=123456" -e "ansible_python_interpreter=/usr/bin/python3"'
              }
         }
     }
