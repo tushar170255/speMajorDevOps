@@ -94,8 +94,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+<<<<<<< HEAD
 				<version>${project.parent.version}</version>
+=======
+				<verison>4.0.0</verison>
+>>>>>>> 1b385312d19d2e6882139024f07995d9b32557bf
 			</plugin>
 		</plugins>
+		
 	</build>
 </project>
