@@ -19,7 +19,7 @@ services:
     image: tusharsharma3/hero:latest
     ports:
       - "8099:8099"
-#    restart: on-failure
+    restart: on-failure
     environment:
       - MYSQL_HOST=mysql-hero
       - MYSQL_PORT=3306
