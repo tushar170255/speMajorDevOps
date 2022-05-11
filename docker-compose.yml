@@ -23,8 +23,7 @@ services:
       - mysql-hero
     links:
       - mysql-hero:mysql
-    expose:
-      -"8099:8099"
+   
 
 
  
