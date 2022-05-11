@@ -50,7 +50,7 @@ pipeline{
         stage('Clean Docker Images') {
             steps {
                 sh 'docker rmi -f tusharsharma3/hero:latest'
-                sh 'docker rmi -f tusharsharma3/angular-app: latest'
+                sh 'docker rmi -f tusharsharma3/angular-app:latest'
             }
         }
         stage('Ansible Deploy') {
