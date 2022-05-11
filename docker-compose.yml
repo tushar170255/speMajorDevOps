@@ -34,7 +34,7 @@ services:
     image: tusharsharma3/angular-app:latest
     ports:
       - "4200:4200"
-    command: ng serve
+    command: npm start
 
 #///
 #version: '3.5'
