@@ -45,7 +45,7 @@ pipeline{
         		}
                 sh 'docker logout'
             }
-        }
+        
         }
         stage('Clean Docker Images') {
             steps {
