@@ -1,17 +1,13 @@
 version: "3.5"
 
 services:
-  mysql-hero:
-    container_name: mysql-hero
-    image: mysql:latest
-    environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=hero
-      - MYSQL_USER=tushar
-      - MYSQL_PASSWORD=password
+  
+ angular-app:
+    container_name: angular-app
+    image: tusharsharma3/angular-app:latest
     ports:
-      - "3307:3306"
-
+      - "4200:4200"
+    command: npm start
 
 
   hero:
@@ -28,15 +24,21 @@ services:
     links:
       - mysql-hero:mysql
     expose:
-      -"8099"
+      -"8099:8099"
 
 
-  angular-app:
-    container_name: angular-app
-    image: tusharsharma3/angular-app:latest
+ 
+    
+  mysql-hero:
+    container_name: mysql-hero
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=hero
+      - MYSQL_USER=tushar
+      - MYSQL_PASSWORD=password
     ports:
-      - "4200:4200"
-    command: npm start
+      - "3307:3306"
 
 #///
 #version: '3.5'
