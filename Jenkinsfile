@@ -15,10 +15,12 @@ pipeline{
             }
         }
         stage('Install dependency') {
+           
             steps {
+                dir("Hero"){
                
-                sh 'mvn clean install'
-                
+                     sh 'mvn clean install'
+                }
             }
         }
         stage('Docker Build') {
