@@ -4,7 +4,7 @@ pipeline{
     environment {
         registry = "tusharsharma/spemajordevops"
         
-          docker_hub_credentials = credential('DOCKERHUB')
+          docker_hub_credentials = credentials('DOCKERHUB')
        
     }
     
