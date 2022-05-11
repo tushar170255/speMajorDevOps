@@ -75,22 +75,22 @@ public String Image(String fileLocation) throws IOException {
             throw new Exception("user already present !!!");
         }
         else{
-            String fileLocation =createFile(hero.getUsrName(),hero.getImage());
-            hero.setImage(fileLocation);
-            fileLocation =createFile(hero.getUsrName()+"aadhar" ,hero.getAadhaarImage());
-            hero.setAadhaarImage(fileLocation);
-
-            fileLocation =createFile(hero.getUsrName()+"other" ,hero.getOtherIdentityImage());
-            hero.setOtherIdentityImage(fileLocation);
+//            String fileLocation =createFile(hero.getUsrName(),hero.getImage());
+//            hero.setImage(fileLocation);
+//            fileLocation =createFile(hero.getUsrName()+"aadhar" ,hero.getAadhaarImage());
+//            hero.setAadhaarImage(fileLocation);
+//
+//            fileLocation =createFile(hero.getUsrName()+"other" ,hero.getOtherIdentityImage());
+//            hero.setOtherIdentityImage(fileLocation);
 
 
 
              this.heroRepository.save(hero);
         }
         hero=heroRepository.findByUsrName(hero.getUsrName());
-        hero.setImage(Image(hero.getImage()));
-        hero.setAadhaarImage(Image(hero.getAadhaarImage()));
-        hero.setOtherIdentityImage(Image(hero.getOtherIdentityImage()));
+//        hero.setImage(Image(hero.getImage()));
+//        hero.setAadhaarImage(Image(hero.getAadhaarImage()));
+//        hero.setOtherIdentityImage(Image(hero.getOtherIdentityImage()));
         return responseService.heroResponse(hero);
 
     }
@@ -107,25 +107,25 @@ public String Image(String fileLocation) throws IOException {
             if((temp.getPassword().equals(password)))
             {
                 System.out.println(temp.getId());
-                temp.setImage(Image(temp.getImage()));
-                temp.setAadhaarImage(Image(temp.getAadhaarImage()));
-                temp.setOtherIdentityImage(Image(temp.getOtherIdentityImage()));
+//                temp.setImage(Image(temp.getImage()));
+//                temp.setAadhaarImage(Image(temp.getAadhaarImage()));
+//                temp.setOtherIdentityImage(Image(temp.getOtherIdentityImage()));
 
                 List<Needy> heroes = temp.getNeeds();
-                for (Needy needy : heroes) {
-                    needy.setImage(Image(needy.getImage()));
-                }
-                temp.setNeeds(heroes);
-                 heroes = temp.getNeedyAccept();
-                for (Needy needy : heroes) {
-                    needy.setImage(Image(needy.getImage()));
-                }
-                temp.setNeedyAccept(heroes);
-                heroes=temp.getNeedyPending();
-                for (Needy needy : heroes) {
-                    needy.setImage(Image(needy.getImage()));
-                }
-                temp.setNeedyPending(heroes);
+//                for (Needy needy : heroes) {
+//                    needy.setImage(Image(needy.getImage()));
+//                }
+//                temp.setNeeds(heroes);
+//                 heroes = temp.getNeedyAccept();
+//                for (Needy needy : heroes) {
+//                    needy.setImage(Image(needy.getImage()));
+//                }
+//                temp.setNeedyAccept(heroes);
+//                heroes=temp.getNeedyPending();
+//                for (Needy needy : heroes) {
+//                    needy.setImage(Image(needy.getImage()));
+//                }
+//                temp.setNeedyPending(heroes);
                 return responseService.heroResponse(temp);
 
             }
@@ -154,8 +154,8 @@ public String Image(String fileLocation) throws IOException {
 //         }
 //  System.out.println(res);
        needy.setHeroRequest(temp);
-       String fileLocation =editFile(needy.getUsrName(),needy.getImage());
-       needy.setImage(fileLocation);
+//       String fileLocation =editFile(needy.getUsrName(),needy.getImage());
+//       needy.setImage(fileLocation);
        
         needyRepository.save(needy);
 
@@ -176,9 +176,9 @@ return res;
       needyRepository.save(tmp);
 
 
-        hero2.setImage(Image(hero2.getImage()));
-        hero2.setAadhaarImage(Image(hero2.getAadhaarImage()));
-        hero2.setOtherIdentityImage(Image(hero2.getOtherIdentityImage()));
+//        hero2.setImage(Image(hero2.getImage()));
+//        hero2.setAadhaarImage(Image(hero2.getAadhaarImage()));
+//        hero2.setOtherIdentityImage(Image(hero2.getOtherIdentityImage()));
 
       return responseService.heroResponse(hero2);
 
@@ -236,7 +236,7 @@ return res;
            List<Needy> temp=hero.getNeeds();
            HashSet<Needy> ans=new HashSet<Needy>();
            for ( Needy x:temp) {
-               x.setImage(Image(x.getImage()));
+//               x.setImage(Image(x.getImage()));
                ans.add(responseService.needyResponse(x));
            }
            System.out.println(ans);
@@ -247,10 +247,28 @@ return res;
    }
    @Override
     public Boolean editHeroProfile (Hero hero) throws IOException {
-       String fileLocation=editFile(hero.getUsrName(),hero.getImage());
-       fileLocation =editFile(hero.getUsrName()+"aadhar",hero.getImage());
-       fileLocation =editFile(hero.getUsrName()+"other",hero.getImage());
-       heroRepository.save(hero);
+//       String fileLocation=editFile(hero.getUsrName(),hero.getImage());
+//       fileLocation =editFile(hero.getUsrName()+"aadhar",hero.getImage());
+//       fileLocation =editFile(hero.getUsrName()+"other",hero.getImage());
+
+       Hero t=heroRepository.findByUsrName(hero.getUsrName());
+       t.setAddress(hero.getAddress());
+       t.setAge(hero.getAge());
+       t.setPassword(hero.getPassword());
+       t.setBirthday(hero.getBirthday());
+       t.setFirstName(hero.getFirstName());
+       t.setEmail(hero.getEmail());
+       t.setSex(hero.getSex());
+       t.setLastName(hero.getLastName());
+       t.setPhone(hero.getPhone());
+       t.setPincode(hero.getPincode());
+       t.setServicePincode(hero.getServicePincode());
+//        String fileLocation = editFile(needy.getUsrName(),needy.getImage());
+
+       t.setImage(hero.getImage());
+       t.setUsrName(hero.getUsrName());
+       t.setEnabled(hero.isEnabled());
+       heroRepository.save(t);
 
        return true;
    }

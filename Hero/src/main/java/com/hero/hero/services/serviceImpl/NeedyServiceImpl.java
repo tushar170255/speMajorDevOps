@@ -68,7 +68,7 @@ public class NeedyServiceImpl implements NeedyService {
           throw new Exception("user already present !!!");
       }
       else{
-         String fileLocation= createFile(needy.getUsrName(),needy.getImage());
+//         String fileLocation= createFile(needy.getUsrName(),needy.getImage());
 //          String img=needy.getImage();
 //          String fileLocation = new File("src//main//resources//static//"+needy.getUsrName()).getAbsolutePath();
 //          Path textFilePath = Paths.get(fileLocation);
@@ -79,7 +79,7 @@ public class NeedyServiceImpl implements NeedyService {
 //          // Writing into the file
 //          Files.writeString(fileName, img);
           local=needy;
-         needy.setImage(fileLocation);
+//         needy.setImage(fileLocation);
         this.needy_repository.save(needy);
       }
         return responseService.needyResponse(local);
@@ -90,8 +90,8 @@ public class NeedyServiceImpl implements NeedyService {
         Needy local=this.needy_repository.findByUsrName(userName);
         if(local!=null)
         {
-            String x=local.getImage();
-            local.setImage(Image(x));
+//            String x=local.getImage();
+//            local.setImage(Image(x));
             return  responseService.needyResponse(local);
         }
         else{
@@ -122,9 +122,9 @@ public class NeedyServiceImpl implements NeedyService {
         t.setLastName(needy.getLastName());
         t.setPhone(needy.getPhone());
         t.setPincode(needy.getPincode());
-        String fileLocation = editFile(needy.getUsrName(),needy.getImage());
+//        String fileLocation = editFile(needy.getUsrName(),needy.getImage());
 
-        t.setImage(fileLocation);
+        t.setImage(needy.getImage());
         t.setUsrName(needy.getUsrName());
         t.setDisable(needy.isDisable());
          needy_repository.save(t);
@@ -145,7 +145,7 @@ public class NeedyServiceImpl implements NeedyService {
         else{
             if(temp.getPassword().equals(password))
             {
-                temp.setImage(Image(temp.getImage()));
+//                temp.setImage(Image(temp.getImage()));
                 return  responseService.needyResponse(temp);
 
             }
@@ -195,9 +195,9 @@ public class NeedyServiceImpl implements NeedyService {
         Needy tmp=needy_repository.findByid(id);
 
                  Hero hero =tmp.getHeroPending();
-         hero.setImage(Image(hero.getImage()));
-         hero.setAadhaarImage(Image(hero.getAadhaarImage()));
-         hero.setOtherIdentityImage(Image(hero.getOtherIdentityImage()));
+//         hero.setImage(Image(hero.getImage()));
+//         hero.setAadhaarImage(Image(hero.getAadhaarImage()));
+//         hero.setOtherIdentityImage(Image(hero.getOtherIdentityImage()));
         return responseService.heroResponse(hero);
     }
 
@@ -279,9 +279,9 @@ return true;
             HashSet<Hero> y = new HashSet<>();
             for (Hero hero:x)
             {
-                hero.setImage(Image(hero.getImage()));
-                hero.setAadhaarImage(Image(hero.getAadhaarImage()));
-                hero.setOtherIdentityImage(Image(hero.getOtherIdentityImage()));
+//                hero.setImage(Image(hero.getImage()));
+//                hero.setAadhaarImage(Image(hero.getAadhaarImage()));
+//                hero.setOtherIdentityImage(Image(hero.getOtherIdentityImage()));
                 y.add(responseService.heroResponse(hero));
 
 

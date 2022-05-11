@@ -1,19 +1,78 @@
-version: "2.1"
+version: "3.5"
 
 services:
   mysql-hero:
     container_name: mysql-hero
-    image: mysql
+    image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=hero
+      - MYSQL_USER=tushar
+      - MYSQL_PASSWORD=password
     ports:
       - "3307:3306"
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost" ]
-      timeout: 20s
-      retries: 10
+
+
 
   hero:
     container_name: hero
-    image:
+    image: hero:latest
+    ports:
+      - "8099:8099"
+#    restart: on-failure
+    environment:
+      - MYSQL_HOST=mysql-hero
+      - MYSQL_PORT=3306
+    depends_on:
+      - mysql-hero
+    links:
+      - mysql-hero:mysql
+
+
+  angular-app:
+    container_name: angular-app
+    image: angular-app:latest
+    ports:
+      - "4200:4200"
+    command: npm start
+
+#///
+#version: '3.5'
+#services:
+#  #   app:
+#  #     build:
+#  #       context: .
+#  #     volumes:
+#  #       - .:/my-app
+#
+#
+#
+#  frontend:
+#    image: "prudhvinag637/frontend-jenkins"
+#    ports:
+#      - "3000:3000"
+#    container_name: frontend_container1
+#    command: npm start
+#
+#  backend:
+#    image: "prudhvinag637/backend-jenkins"
+#    ports:
+#      - "8557:8557"
+#    container_name: backend_container_sql1
+#    restart: on-failure
+#    environment:
+#      - MYSQL_HOST=mydb
+#      - MYSQL_PORT=3306
+#    depends_on:
+#      - mydb
+#
+#  mydb:
+#    image: "mysql:latest"
+#    ports:
+#      - "3306:3306"
+#    container_name: database_container
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=password
+#      - MYSQL_DATABASE=test
+#      - MYSQL_USER=prudhvi
+#      - MYSQL_PASSWORD=password

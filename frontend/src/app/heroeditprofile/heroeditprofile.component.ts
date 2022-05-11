@@ -41,24 +41,24 @@ onFileChanged( event: any)
   reader.readAsDataURL(event.target.files[0]);
 
 }
-onFileChangedAI( event: any)
-{
-  event.target.files[0];
-  let reader = new FileReader();
-  reader.onloadend = ()=> {
-    this.hero.aadhaarImage=`${reader.result}`;
-  }
-  reader.readAsDataURL(event.target.files[0]);
-}
-onFileChangedOII( event: any)
-{
-  event.target.files[0];
-  let reader = new FileReader();
-  reader.onloadend = ()=> {
-    this.hero.otherIdentityImage=`${reader.result}`;
-  }
-  reader.readAsDataURL(event.target.files[0]);
-}
+// onFileChangedAI( event: any)
+// {
+//   event.target.files[0];
+//   let reader = new FileReader();
+//   reader.onloadend = ()=> {
+//     this.hero.aadhaarImage=`${reader.result}`;
+//   }
+//   reader.readAsDataURL(event.target.files[0]);
+// }
+// onFileChangedOII( event: any)
+// {
+//   event.target.files[0];
+//   let reader = new FileReader();
+//   reader.onloadend = ()=> {
+//     this.hero.otherIdentityImage=`${reader.result}`;
+//   }
+//   reader.readAsDataURL(event.target.files[0]);
+// }
 
 formSubmit(){
   
