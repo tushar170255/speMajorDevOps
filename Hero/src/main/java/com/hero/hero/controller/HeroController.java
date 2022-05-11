@@ -13,7 +13,9 @@ import java.util.HashSet;
 
 @RestController
 @RequestMapping("/hero")
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
+@CrossOrigin("{*}")
+
 
 public class HeroController {
     @Autowired

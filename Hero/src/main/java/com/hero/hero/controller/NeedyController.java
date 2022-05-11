@@ -13,7 +13,8 @@ import java.util.HashSet;
 
 @RestController
 @RequestMapping("/needy")
-@CrossOrigin("http://localhost:4200/")
+//@CrossOrigin("http://localhost:4200/")
+@CrossOrigin("{*}")
 
 
 public class NeedyController {
