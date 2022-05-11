@@ -10,7 +10,7 @@ pipeline{
     stages {
         stage('Git clone') {
             steps {
-                git url: 'https://github.com/tusharsharma3/speMajorDevOps.git', branch: 'master'
+                git url: 'https://github.com/tushar170255/speMajorDevOps.git', branch: 'master'
                 // credentialsId: 'Github-token'
             }
         }
