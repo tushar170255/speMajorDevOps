@@ -1,8 +1,17 @@
 ---
-- name: Pull and Run docker image
-  hosts: localhost
+- name: run containers
+  hosts: docker
+  become: true
+
   tasks:
-    - name: copy docker compose file from folder to remote host
+    - name: copy docker file
       copy:
-        src: ./docker-compose.yml
-        dest: ./
+        src: docker-compose.yml
+        dest: docker-compose.yml
+    - name: shell docker
+      shell:
+        cmd: docker-compose down
+    - name: dockercompose
+      docker_compose:
+        project_src: .
+        state: present
