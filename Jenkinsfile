@@ -16,7 +16,7 @@ pipeline{
         }
         stage('Install dependency') {
             steps {
-                sh 'mcn clean install'
+                sh 'mvn clean install'
             }
         }
         stage('Docker Build') {
